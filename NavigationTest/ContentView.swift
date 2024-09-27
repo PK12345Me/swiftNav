@@ -63,7 +63,7 @@ struct View2: View{
     @State private var path2 = NavigationPath()
     @Binding var selectedTab: Tab
     var body: some View{
-        NavigationStack{
+        NavigationStack(path: $path2){
             VStack{
                 Text("This is Root# 2")
                 Button("View 5 - Go to") {
@@ -82,7 +82,7 @@ struct View2: View{
                             View6(path2: $path2, selectedTab: $selectedTab)
                         }
                         else if i == 203 {
-                            View7(path2: $path2)
+                            View7(path2: $path2,selectedTab: $selectedTab)
                         }
                     }
             }
@@ -139,6 +139,27 @@ struct View6: View{
     var body: some View{
         VStack{
             Text("Hello View 6 Viewer")
+        }
+    }
+}
+
+struct View7: View{
+    @Binding var path2: NavigationPath
+    @Binding var selectedTab: Tab
+    var body: some View{
+        VStack{
+            Text("Hello View 7 Inside Root 2")
+            Button("Go to View 2 & clear stack") {
+                selectedTab = .view1
+                path2 = NavigationPath()
+
+            }
+//changing Tab(from TabView) and Clearing the Navigation Stack together
+                            
+            .padding()
+            Button("Home/Root # 2"){
+                path2 = NavigationPath()
+            }
         }
     }
 }
