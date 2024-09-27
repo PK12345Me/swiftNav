@@ -22,7 +22,7 @@ struct ContentView: View {
                     .tag(Tab.view1)
                 View2(selectedTab: $selectedTab)
                     .tabItem{Label("View-2", systemImage: "2.circle")}
-                    .tag(Tab.view1)
+                    .tag(Tab.view2)
             }
         }
         .padding()
@@ -43,7 +43,7 @@ struct View1: View{
                     path1.append(101)
                 }.padding()
                 Button("View 4 - Go to") {
-                    path1.append(101)
+                    path1.append(102)
                 }.padding()
                     .navigationDestination(for: Int.self){i in
                         if i == 101 {
@@ -64,12 +64,37 @@ struct View2: View{
     @Binding var selectedTab: Tab
     var body: some View{
         NavigationStack{
+            VStack{
+                Text("This is Root# 2")
+                Button("View 5 - Go to") {
+                    path2.append(201)
+                }.padding()
+                Button("View 6 - Go to") {
+                    path2.append(202)
+                }.padding()
+                Button("View 7 - Go to") {
+                    path2.append(203)
+                }.padding()
+                    .navigationDestination(for: Int.self){i in
+                        if i == 201 {
+                            View5(path2: $path2)
+                        } else if i == 202 {
+                            View6(path2: $path2, selectedTab: $selectedTab)
+                        }
+                        else if i == 203 {
+                            View7(path2: $path2)
+                        }
+                    }
+            }
+
             
         }
     }
 }
 
+// Root 1 /View 1- child views
 struct View3: View{
+    @Binding var path1: NavigationPath
     var body: some View{
         VStack{
             Text("Hello View 3 Viewer")
@@ -78,9 +103,42 @@ struct View3: View{
 }
 
 struct View4: View{
+    @Binding var path1: NavigationPath
+    @Binding var selectedTab: Tab
     var body: some View{
         VStack{
-            Text("Hello View 4 Viewer")
+            Text("Hello View 4 Inside View 1")
+            Button("Go to View 2") {
+                selectedTab = .view2
+                path1 = NavigationPath()
+
+            }
+//changing Tab(from TabView) and Clearing the Navigation Stack together
+                            
+            .padding()
+            Button("Home/Root # 1"){
+                path1 = NavigationPath()
+            }
+        }
+    }
+}
+
+// Root 2/View 2- child views
+struct View5: View{
+    @Binding var path2: NavigationPath
+    var body: some View{
+        VStack{
+            Text("Hello View 5 Viewer")
+        }
+    }
+}
+
+struct View6: View{
+    @Binding var path2: NavigationPath
+    @Binding var selectedTab: Tab
+    var body: some View{
+        VStack{
+            Text("Hello View 6 Viewer")
         }
     }
 }
