@@ -2,14 +2,14 @@ Trying to understand how TabView and NavigationStack can work with each other, i
 
 Here's how our app structure looks:
 
-View0: TabView
-  View1 (NavigationStack - NV1)
-    View3 (TabView)
-    View4 (TabView)
-  View2 (NavigationStack - NV2)
-    View5 (TabView)
-    View6 (TabView)
-    View7 (TabView)
+# View0: TabView
+##  View1 (NavigationStack - NV1)
+  ###  View3 (TabView)
+  ### View4 (TabView)
+## View2 (NavigationStack - NV2)
+  ### View5 (TabView)
+  ### View6 (TabView)
+  ### View7 (TabView)
 
 1) TabView is more visible in comparison to NavigationStack which is more abstract in nature. In SwiftUI, each tab in a TabView is independent and can contain its own NavigationStack. This allows each tab to manage its own navigation flow without interfering with the others.
 2) NavigationStack creates a stack of views(View()) while a user navigates thru the app and remembers it for the user to navigate back to the root view using navigation bar (back button in most cases)
