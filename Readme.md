@@ -16,17 +16,17 @@ View0: TabView
 3) In our example, we have a way to resent the NavigationStack (using : path1/2 = NavigationPath()) in view 7 and 4 - find an example below:
 
 //changing Tab(from TabView) and Clearing the Navigation Stack together
-                            
-            .padding()
-            .background(Color.gray.opacity(0.5))
-            .clipShape(RoundedRectangle(cornerRadius: 10)) // Rounded corners
+              
+              // example 1            
+             Button("Go to View 2") {
+                selectedTab = .view2
+                path1 = NavigationPath()
+
             
+            // example 2   
             Button("Home/Root # 1"){
                 path1 = NavigationPath()
             }
-            .padding()
-            .background(Color.gray.opacity(0.5))
-            .clipShape(RoundedRectangle(cornerRadius: 10)) // Rounded corners
 
 4) @Binding property wrapper is used to bind the Original navigationPath() and Tab(enum variable) to their values on the child-views, such user can navigate with ease
 
