@@ -24,10 +24,13 @@ struct ContentView: View {
                     .tabItem{Label("View-2", systemImage: "2.circle")}
                     .tag(Tab.view2)
             }
-        }
+            
+            }
         .padding()
+        }
+        //.padding()
     }
-}
+
 
 #Preview {
     ContentView()
@@ -35,8 +38,9 @@ struct ContentView: View {
 struct View1: View{
     @State private var path1 = NavigationPath()
     @Binding var selectedTab: Tab
+    
     var body: some View{
-        NavigationStack(path: $path1){
+        NavigationStack(path: $path1) {
             VStack{
                 Text("This is Root# 1")
                 Button("View 3 - Go to") {
@@ -52,9 +56,29 @@ struct View1: View{
                             View4(path1: $path1, selectedTab: $selectedTab)
                         }
                     }
+                
             }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "line.3.horizontal")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+                    
+                }
+            
             
         }
+        
     }
 }
 
@@ -86,6 +110,23 @@ struct View2: View{
                         }
                     }
             }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "line.3.horizontal")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+                    
+                }
 
             
         }
